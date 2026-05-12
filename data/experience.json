@@ -1,0 +1,27 @@
+[
+  {
+    "company": "Convident LLC",
+    "role": "Mechanical Engineering Contributor",
+    "start": "September 2024",
+    "end": "Present",
+    "type": "Startup",
+    "bullets": [
+      "Designed a vinyl cover for a new vending-machine product line.",
+      "Supported inventory management and parts sourcing for early-stage manufacturing."
+    ],
+    "tools": ["Vinyl Printing", "Inventory Management"]
+  },
+  {
+    "company": "Northwestern Baja SAE Racing",
+    "role": "Drivetrain / Mechanical Team Member",
+    "start": "March 2024",
+    "end": "June 2024",
+    "type": "Collegiate Team",
+    "bullets": [
+      "Designed gears and shafts in NX Siemens for a dune-buggy-style competition vehicle.",
+      "Machined mechanical components and assemblies in the shop.",
+      "Focused on gear junctions, load transfer, and on-vehicle maneuverability under racing loads."
+    ],
+    "tools": ["NX Siemens", "CNC Machining", "Lathe", "Manual Mill"]
+  }
+]

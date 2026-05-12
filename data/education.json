@@ -1,0 +1,25 @@
+{
+  "school": "Northwestern University",
+  "campus": "McCormick School of Engineering & Applied Science",
+  "location": "Evanston, IL",
+  "degree": "B.S. Mechanical Engineering",
+  "start": "September 2022",
+  "graduation": "June 2026",
+  "gpa": "",
+  "honors": [],
+  "awards": [],
+  "coursework": [
+    "Fluid Mechanics",
+    "System Dynamics",
+    "Heat Transfer",
+    "Computational Methods in Engineering Design",
+    "Mechatronics",
+    "Vehicle Dynamics and Design",
+    "Mechanics and Science of Materials",
+    "Theory of Machines — Design of Elements",
+    "Manufacturing Processes",
+    "Engineering Analysis",
+    "Physics",
+    "Chemistry"
+  ]
+}

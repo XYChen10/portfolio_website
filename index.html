@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#F2EFE8" />
+  <title>Portfolio</title>
+  <meta name="description" data-bind="description" content="Mechanical engineering portfolio." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23F2EFE8'/><text x='16' y='22' text-anchor='middle' font-family='monospace' font-size='16' font-weight='700' fill='%231A1815'>X</text></svg>" />
+</head>
+<body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo" aria-label="Home">
+        <span class="nav__mark" data-bind="initials">·</span>
+        <span class="nav__dot"></span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#about"      data-nav="about"><span class="nav__num">01</span> About</a>
+        <a href="#work"       data-nav="work"><span class="nav__num">02</span> Projects</a>
+        <a href="#experience" data-nav="experience"><span class="nav__num">03</span> Experience</a>
+        <a href="#resume"     data-nav="resume"><span class="nav__num">04</span> Resume</a>
+        <a href="#contact"    data-nav="contact"><span class="nav__num">05</span> Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" data-section="hero">
+      <svg class="hero__grid" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1600 1000">
+        <defs>
+          <pattern id="grid-fine" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+          </pattern>
+          <pattern id="grid-coarse" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid-fine)" />
+        <rect width="100%" height="100%" fill="url(#grid-coarse)" />
+      </svg>
+
+      <span class="crosshair crosshair--tl" aria-hidden="true"></span>
+      <span class="crosshair crosshair--tr" aria-hidden="true"></span>
+      <span class="crosshair crosshair--bl" aria-hidden="true"></span>
+      <span class="crosshair crosshair--br" aria-hidden="true"></span>
+
+      <div class="hero__inner container">
+        <div class="hero__meta mono">
+          <span class="hero__meta-line">[ 00 — INTRODUCTION ]</span>
+          <span class="hero__meta-line" data-bind="location">—</span>
+        </div>
+
+        <h1 class="hero__name reveal" id="heroName">
+          <!-- populated by main.js: name split into rows -->
+        </h1>
+
+        <div class="hero__rule reveal" id="heroRule">
+          <span class="rule-line"></span>
+          <span class="hero__title mono" data-bind="title">MECHANICAL ENGINEER</span>
+          <span class="rule-line"></span>
+        </div>
+
+        <p class="hero__tagline reveal" id="heroTagline">
+          <span class="hero__tagline-prefix mono">/ </span>
+          <span class="hero__tagline-cycle" id="taglineCycle" aria-live="polite">—</span>
+        </p>
+
+        <div class="hero__ctas reveal" id="heroCtas">
+          <a href="#work" class="btn btn--solid">
+            <span class="btn__label">View Projects</span>
+            <span class="btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="14" height="14"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+          </a>
+          <a href="#" class="btn btn--ghost btn--pulse" data-bind-href="resume" download>
+            <span class="btn__label">Download Resume</span>
+            <span class="btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 1v10M3 7l5 5 5-5M1 15h14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="hero__readout mono" aria-hidden="true">
+          <div><span>X</span><b id="readoutX">0000</b></div>
+          <div><span>Y</span><b id="readoutY">0000</b></div>
+          <div><span>SCROLL</span><b id="readoutScroll">000</b>%</div>
+        </div>
+
+        <div class="hero__scrollhint mono" aria-hidden="true">
+          <span>SCROLL</span>
+          <span class="hero__scrollhint-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about" data-section="about">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__num mono">01</span>
+          <h2 class="section__title"><span class="section__title-lead mono">/ </span>About</h2>
+          <span class="section__rule"></span>
+        </header>
+
+        <div class="about__grid">
+          <figure class="about__photo reveal">
+            <div class="about__photo-frame">
+              <img alt="Portrait" data-bind-src="photo" data-bind-alt="name" />
+            </div>
+            <figcaption class="about__caption mono">
+              <span>[ FIG. 01 ]</span><span data-bind="figCaption">PORTRAIT</span>
+            </figcaption>
+          </figure>
+
+          <div class="about__body">
+            <p class="about__lead reveal" data-bind="bio"></p>
+
+            <dl class="about__stats reveal" id="aboutStats"></dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills" data-section="skills">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__num mono">02</span>
+          <h2 class="section__title"><span class="section__title-lead mono">/ </span>Skills</h2>
+          <span class="section__rule"></span>
+        </header>
+
+        <div class="skills__grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ WORK / PROJECTS ============ -->
+    <section class="section work" id="work" data-section="work">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__num mono">03</span>
+          <h2 class="section__title"><span class="section__title-lead mono">/ </span>Selected Work</h2>
+          <span class="section__rule"></span>
+        </header>
+
+        <p class="work__intro reveal">
+          A cross-section of design, simulation, and manufacturing projects —
+          from coursework to client capstones. Click any card for the full technical detail.
+        </p>
+
+        <div class="filter reveal" role="tablist" aria-label="Project filter" id="filterEl">
+          <span class="filter__pill" aria-hidden="true"></span>
+          <!-- buttons populated by main.js from the categories present in projects.json -->
+        </div>
+
+        <div class="cards" id="projectCards" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section experience" id="experience" data-section="experience">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__num mono">04</span>
+          <h2 class="section__title"><span class="section__title-lead mono">/ </span>Experience</h2>
+          <span class="section__rule"></span>
+        </header>
+
+        <div class="timeline" id="experienceTimeline"></div>
+      </div>
+    </section>
+
+    <!-- ============ RESUME ============ -->
+    <section class="section resume" id="resume" data-section="resume">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__num mono">05</span>
+          <h2 class="section__title"><span class="section__title-lead mono">/ </span>Resume</h2>
+          <span class="section__rule"></span>
+        </header>
+
+        <div class="resume__top reveal">
+          <p class="resume__intro">
+            Single-page resume below. For the full PDF including coursework, awards, and references:
+          </p>
+          <a class="btn btn--solid btn--pulse" data-bind-href="resume" download>
+            <span class="btn__label">Download Resume (PDF)</span>
+            <span class="btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 1v10M3 7l5 5 5-5M1 15h14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="resume__embed reveal" id="resumeEmbed">
+          <!-- PDF iframe added by main.js if resume exists, otherwise a note -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" data-section="contact">
+      <div class="container">
+        <header class="section__head">
+          <span class="section__num mono">06</span>
+          <h2 class="section__title"><span class="section__title-lead mono">/ </span>Contact</h2>
+          <span class="section__rule"></span>
+        </header>
+
+        <div class="contact__grid">
+          <div class="contact__lede reveal">
+            <h3 class="contact__big">
+              Got a project,<br/>
+              an internship,<br/>
+              or a hard problem?
+            </h3>
+            <p>I read every message. Best for me is direct email — happy to share more detail on any project or jump on a call.</p>
+
+            <ul class="contact__links" id="contactLinks"></ul>
+          </div>
+
+          <form class="contact__form reveal" id="contactForm" novalidate>
+            <div class="field">
+              <label for="cf-name" class="mono">01 / NAME</label>
+              <input type="text" id="cf-name" name="name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="cf-email" class="mono">02 / EMAIL</label>
+              <input type="email" id="cf-email" name="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="cf-msg" class="mono">03 / MESSAGE</label>
+              <textarea id="cf-msg" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--solid contact__submit">
+              <span class="btn__label">Send Message</span>
+              <span class="btn__icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+            </button>
+            <p class="contact__status mono" id="contactStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left mono">
+        <span>© <span id="footerYear"></span> <span data-bind="name">—</span></span>
+        <span>· Designed and built from scratch</span>
+      </div>
+      <div class="footer__right mono">
+        <span data-bind="location">—</span>
+        <a href="#hero" class="footer__top">▲ TOP</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button class="lightbox__close" data-lightbox-close aria-label="Close">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <button class="lightbox__prev" data-lightbox-prev aria-label="Previous image">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 4L7 12l8 8"/></svg>
+    </button>
+    <button class="lightbox__next" data-lightbox-next aria-label="Next image">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 4l8 8-8 8"/></svg>
+    </button>
+    <figure class="lightbox__figure">
+      <img id="lightboxImg" alt="" />
+      <figcaption class="lightbox__caption mono" id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

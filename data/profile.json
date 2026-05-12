@@ -1,0 +1,31 @@
+{
+  "name": "Xing Yu Chen",
+  "shortName": "Xing",
+  "title": "Mechanical Engineer",
+  "location": "Evanston, IL",
+  "school": "Northwestern University",
+  "degree": "B.S. Mechanical Engineering",
+  "graduation": "June 2026",
+  "gpa": "",
+  "email": "xingchen2026@u.northwestern.edu",
+  "phone": "(312) 900-5998",
+  "linkedin": "",
+  "github": "https://github.com/XYChen10",
+  "photo": "assets/profile.jpg",
+  "resume": "data/xing_chen_resume.pdf",
+  "tagline": "Design — Analyze — Build",
+  "taglines": [
+    "Design — Analyze — Build",
+    "From CAD to chips on the shop floor",
+    "Bayesian optimization to Bridgeport mills",
+    "Rigor in the calculations, calluses in the shop"
+  ],
+  "bio": "I'm a mechanical engineering senior at Northwestern, graduating June 2026. My work lives in the loop between design and the shop floor — drafting parts in CAD, validating them with FEA or first-principles math, then machining and testing them myself. Right now I'm leading the engineering analysis on a year-long capstone with UL Solutions, designing a battery drop-certification rig that's replacing decades of manual testing.",
+  "shortBio": "Mechanical engineering senior at Northwestern (June 2026), working across design, simulation, and fabrication. Currently leading engineering analysis on a UL Solutions battery-certification capstone.",
+  "stats": [
+    { "label": "Class Of", "value": "2026" },
+    { "label": "Projects", "value": "6" },
+    { "label": "Software", "value": "8+" },
+    { "label": "Focus", "value": "Design + Sim" }
+  ]
+}

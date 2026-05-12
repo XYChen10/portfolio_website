@@ -1,0 +1,151 @@
+[
+  {
+    "id": "ul-battery-drop-tester",
+    "title": "UL Battery Drop Certification Tester",
+    "summary": "Year-long capstone for UL Solutions: a remote-operated battery drop tester that replaces a manual rig with repeatable, instrumented, multi-orientation drop testing.",
+    "description": "UL Solutions' Battery Test Center in Illinois relied on a manual drop-testing rig that required operators to remain inside the test cell during a drop, used a single-plate trapdoor that couldn't produce instantaneous releases, and made repeatable corner-drop orientations effectively impossible. Our six-person team designed and built a remote-operable replacement that satisfies UL's certification standards while protecting operators.\n\nThe system is broken into five subsystems: a pneumatic-piston battery release and orientation mechanism (the critical system from Q1), a lead-screw height adjustment, a drop base platform, a wireless remote control and monitoring system, and a set of universal-pin end effectors that hold prismatic and cylindrical cells. Q1 prototyping converged on twin pneumatic pistons over alternatives like belt-driven actuators and side-pull calipers — informed by an alternatives matrix and bench testing. Q2 work focused on integrating those subsystems into a complete prototype, with synchronized piston actuation, an Ashby-driven material selection for the impact surface and viewing window, and an FMEA across the orient/release and lifting subfunctions.\n\nI led full prototype fabrication from ideation and sourcing through manufacturing and assembly, and served as primary editor for all engineering analysis, technical documentation, CAD, and presentations. The drop orientation measurement method I developed captures full force-mapping across the battery surface on impact, replacing the incomplete corner-only contact data UL was previously using.",
+    "category": "Design",
+    "subcategory": "Capstone",
+    "year": "2026",
+    "dateRange": "January 2026 – June 2026",
+    "role": "Lead Engineering Analysis / Fabrication",
+    "team": "6 (with Charlize Guillen, Kelley Gaines, Cristian Gonzalez, Paulina Hernandez, Serena Frolli)",
+    "client": "UL Solutions",
+    "advisors": "Jeremy Keys, Michael Beltran (UL Solutions); Miles Lankford, Guanying Li",
+    "tags": ["SolidWorks", "Pneumatics", "Capstone", "UL Solutions"],
+    "tools": ["SolidWorks", "Raspberry Pi Pico 2W", "Blynk IoT", "Ashby Selection", "FMEA", "McMaster-Carr"],
+    "highlights": [
+      "80% edge-drop success rate on M18 batteries with the Q1 pneumatic-piston prototype, passing the 50 lb marginal load requirement.",
+      "Four core subsystems engineered from scratch: pneumatic release mechanism, universal-pin end effectors, lead-screw height adjustment, drop-base containment & safety monitoring.",
+      "Developed a drop-orientation measurement method that captures full impact-force mapping across the battery surface — replacing UL's incomplete corner-only data.",
+      "Lifted-mass requirements split between subsystems: ≥50 lb on the release mechanism, ≥60 lb on the height adjustment."
+    ],
+    "images": [],
+    "links": {
+      "report": "data/Full Engineering Analysis Report - UL - Google Docs.pdf",
+      "briefing": "data/Q1 Technical Briefing - UL - Google Docs.pdf"
+    }
+  },
+  {
+    "id": "gear-shaft-design",
+    "title": "Three-Shaft, Four-Element Gear Train",
+    "summary": "Complete mechanical design of a 65 kW gearbox reducing 3000 rpm to 364 rpm across two stages, with shafts, gears, and SKF bearings sized for infinite life.",
+    "description": "An ME 315 (Theory of Machines / Design of Elements) project. I was responsible for Shaft System 1 — the input stage that takes a V-belt pulley input and drives Gear 1 into the first reduction. The complete system is a three-shaft, four-element spur-gear train running at 65 kW with an overall transmission ratio of 0.121 (3000 → 364 rpm).\n\n## What I sized\n\nFor my shaft I derived all loads from first principles: pulley tension ratio (F1/F2 = 5), bearing reaction forces, and resultant bending moments at the critical cross-section just to the right of bearing B. I then sized the shaft using a Goodman fatigue criterion with assumed fatigue stress concentration factors (Kf=3, Kfs=2.8), surface finish, size, and reliability factors. Minimum diameter from a combined bending+torque check was 23 mm; after keyway correction and a safety-factor pad, the shaft was set to 40 mm. AISI 1045 steel.\n\n## Why this matters\n\nThe whole train is designed for infinite life with the lowest contact factor of safety in the system being 1.12 and the lowest bending FoS being 1.7 — both above the minimum threshold of 1.3 for the Goodman criterion. SKF bearings (6410, NU 210 ECM, 6310) were selected such that no bearing changes are needed over the design life of 14,560 hours.",
+    "category": "Design",
+    "subcategory": "Coursework",
+    "year": "2025",
+    "dateRange": "September 2025 – December 2025",
+    "role": "Lead Designer (Shaft System 1)",
+    "team": "3 (with Mason Messmer, James Zhang)",
+    "course": "ME 315: Theory of Machines — Design of Elements",
+    "tags": ["SolidWorks", "Gear Design", "Fatigue", "Goodman"],
+    "tools": ["SolidWorks", "Hand calculations", "AISI 1045 / 4140 / 8620 steel", "SKF bearing catalog"],
+    "highlights": [
+      "65 kW input @ 3000 rpm reduced to 364 rpm in two stages — overall ratio 0.121.",
+      "Shaft 1 sized via Goodman fatigue criterion: 40 mm diameter, FoS 1.92 (fatigue) and 6.43 (yield), infinite life.",
+      "Lowest contact factor of safety across the gearbox: 1.12 (Gear 2 mesh).",
+      "Three SKF bearings selected (6410, NU 210 ECM, 6310) — no maintenance changes over 14,560-hour life."
+    ],
+    "images": [],
+    "links": {
+      "report": "data/ME 315 Group 8 Design Project.pdf"
+    }
+  },
+  {
+    "id": "pressure-vessel-bayesian",
+    "title": "Bayesian-Optimized Pressure Vessel",
+    "summary": "A Python pipeline that wraps Abaqus FEA inside a Bayesian optimization loop to minimize the mass of a 10 MPa nuclear pressure vessel.",
+    "description": "An ME 341 project. The conventional design path for pressure vessels — empirical formulas plus conservative safety factors — produces vessels that are safe but heavy and over-engineered. My partner and I built an optimization framework that treats the vessel's stress response as a black-box function and minimizes mass against it, calling Abaqus FEA at every iteration.\n\n## Method\n\nFive design variables (shell radius, length, shell thickness, head thickness, nozzle thickness) bounded by geometric and manufacturability constraints. The objective is total mass plus a continuous penalty function for constraint violations (volume, strength, stress limit). The optimizer is `gp_minimize` from scikit-optimize — Gaussian Process surrogate with Expected Improvement acquisition. At each iteration the main Python script writes design variables to disk, calls `Run_Abaqus.py` which builds a quadrant FEA model of the vessel and applies a 10 MPa internal pressure, reads back the maximum von Mises stress, and updates the penalty.\n\n## Material & validation\n\nVessel is SA-516 GR.70 carbon steel: 7750 kg/m³, 193 GPa modulus, 260 MPa yield. Validated against (a) a research-paper baseline pressure vessel for nuclear facilities, (b) a 60-gallon Central Fabricators production vessel, and (c) k-fold cross-validation on the sampled design space (silhouette score 0.685 at k=2). We also benchmarked against pure random sampling — the BO algorithm reached a local minimum that satisfied all safety-factor constraints noticeably faster.\n\n## Result\n\nOptimal design from starting point X1: R=300mm, L=1200mm, ts=180.7mm, th=69.3mm, tn=100mm → 3.785 tonnes, with max stress 86.66 MPa (well under 260 MPa yield, ~3× safety factor). Total runtime: 27 minutes for 30 initial samples + 30 calls.",
+    "category": "Simulation",
+    "subcategory": "Coursework",
+    "year": "2025",
+    "dateRange": "January 2025 – March 2025",
+    "role": "Algorithm Implementation & Validation",
+    "team": "2 (with Alexander Torres-Soto)",
+    "course": "ME 341: Computational Methods in Engineering Design",
+    "tags": ["Abaqus", "Python", "FEA", "Bayesian Opt."],
+    "tools": ["Abaqus CAE 2023", "Python (scikit-optimize)", "MATLAB", "Gaussian Process"],
+    "highlights": [
+      "Optimal mass: 3.785 tonnes — within 70% of a published nuclear-vessel baseline despite a larger radius and a safety factor of 3.",
+      "Max stress 86.66 MPa under 10 MPa internal pressure (3× margin to 260 MPa yield).",
+      "30 initial samples + 30 iterations converge in 27 minutes — fewer-iteration runs (5+5) reach the same local minimum.",
+      "K-fold cross-validation silhouette scores 0.628–0.685 confirm well-separated exploration across the design space."
+    ],
+    "images": [],
+    "links": {
+      "report": "data/ME341 Final Report (1).pdf",
+      "code": "https://github.com/XYChen10/ME341_Project_Code"
+    }
+  },
+  {
+    "id": "jack-in-a-box-simulation",
+    "title": "Jack-in-a-Box Lagrangian Simulation",
+    "summary": "A from-scratch Python simulation of a planar jack bouncing inside an oscillating box — full rigid-body dynamics with impact-constraint handling.",
+    "description": "An ME 314 project on multi-body dynamics. I built a planar simulator of a 4-armed jack moving inside a rotating box, with the box driven by a sinusoidal torque and the jack subject to gravity. The whole system is derived symbolically in SymPy from a Lagrangian, integrated numerically with RK4, and animated in Plotly.\n\n## Mechanics\n\nSix generalized coordinates (x, y, θ for box and jack), Euler-Lagrange equations solved symbolically for the second-derivatives, then lambdified for fast evaluation. Sixteen impact constraints — every combination of the four box walls against the four jack tips — are tracked simultaneously. When any impact constraint crosses a small threshold, the solver swaps to an impact-update routine that enforces conservation of generalized momentum and Hamiltonian energy, plus the constraint Jacobian times an unknown Lagrange multiplier λ, and solves for the post-impact velocities.\n\n## Edge cases\n\nThe impact solver returns multiple algebraic solutions in some collision geometries; I added a tiebreaker that picks the solution whose λ has non-negligible magnitude (since λ ≈ 0 corresponds to the no-impact trivial solution). The system runs cleanly over a 10-second window with a 0.01-second timestep — about 20 wall-impacts in a typical run before the jack settles.\n\n## Output\n\nThe deliverable is an interactive Plotly animation with play/pause controls, plus matplotlib time-series plots of box and jack positions, angles, and velocities.",
+    "category": "Simulation",
+    "subcategory": "Coursework",
+    "year": "2025",
+    "dateRange": "March 2025 – June 2025",
+    "role": "Equal contribution",
+    "team": "2 (with Daniil Kniazkou)",
+    "course": "ME 314: Mechatronics / Dynamical Systems",
+    "tags": ["Python", "Lagrangian", "Dynamics", "Sympy"],
+    "tools": ["Python", "SymPy", "NumPy", "Matplotlib", "Plotly"],
+    "highlights": [
+      "6 generalized coordinates, 16 simultaneous impact constraints (4 walls × 4 jack tips).",
+      "Symbolic derivation of Euler-Lagrange + impact equations in SymPy, lambdified to NumPy for the inner loop.",
+      "RK4 integration over 10 s at Δt = 0.01 s — interactive Plotly animation as the deliverable.",
+      "Custom solution-picker handles multiple-root cases from the impact constraint solver."
+    ],
+    "images": [],
+    "links": {
+      "notebook": "data/ME_314_Final_Project.ipynb - Colab.pdf"
+    }
+  },
+  {
+    "id": "injection-molded-axolotl-boat",
+    "title": "Injection-Molded Axolotl + Boat Assembly",
+    "summary": "Designed core and cavity molds for a two-part injection-molded assembly, CNC-machined them in aluminum, and ran a metrology study on the molded parts.",
+    "description": "An ME 340-2 project covering the full design-to-manufacture loop for an injection-molded assembly: a cartoon axolotl that 'rides' on a small boat. Designed in NX CAD, toolpath-programmed in NX CAM, machined on Haas CNC mills, and shot on the Morgan Press injection-molding machine in the Ford shop.\n\n## Mold design\n\nBoth parts use a standard core/cavity layout. The axolotl needed dowel-pin inserts for the gill-attachment holes because the contoured back face wasn't amenable to a deep extrude. The boat couldn't be machined in a single setup — the deep slot for the deck wasn't reachable with our tooling — so I split the mold into two pieces with a shutoff at the railing line. CAM was a mix of cavity mill, area mill, planar mill, and wall-floor profile ops with 0.0625\"–0.75\" end/ball mills. 1° draft on every vertical face, uniform 0.0625\" wall thickness for shrinkage control.\n\n## Interference-fit math\n\nThe axolotl's gills press-fit into the body and the boat halves press-fit to each other. I computed the contact pressure for the gill press fit (0.104 GPa) and the diametral interference for the boat halves (0.0025\" at 30 MPa design stress) using closed-form thick-cylinder relations.\n\n## Process tuning + metrology\n\nFirst shots at the manufacturer-recommended 450 °C / 8 s injection / 30 s cooling produced flash on the axolotl; iterated down to 430 °C / 2.5 s / 25 s for clean parts. Ran a Shewhart control chart and histogram on the axolotl leg width — measured 0.194\" mean against a 0.200\" CAD nominal, well within the −0.005\" shrinkage tolerance. Gill diameter held within ±0.0021\" across the production batch.",
+    "category": "Manufacturing",
+    "subcategory": "Coursework",
+    "year": "2025",
+    "dateRange": "January 2025 – March 2025",
+    "role": "Mold design + CNC + Press operation",
+    "team": "3 (with Cole Abbott, Matthew Martinez)",
+    "course": "ME 340-2: Manufacturing Processes",
+    "tags": ["NX CAD/CAM", "CNC", "Injection Molding", "Metrology"],
+    "tools": ["NX Siemens (CAD + CAM)", "Haas CNC Mill", "Morgan Press", "Polypropylene", "Shewhart SPC"],
+    "highlights": [
+      "Designed core/cavity molds for both parts; CAM-programmed every operation in NX from scratch.",
+      "Iterated injection parameters from baseline 450 °C / 8 s to 430 °C / 2.5 s for flash-free axolotl parts.",
+      "Metrology: axolotl leg width 0.194\" mean against 0.200\" target — within shrinkage tolerance.",
+      "Boat-half press fit (0.0025\" interference, 30 MPa design stress) — secure assembly without fasteners."
+    ],
+    "images": [],
+    "links": {
+      "report": "data/340-2 Final Report (1).pdf"
+    }
+  },
+  {
+    "id": "robotic-egg-effector",
+    "title": "Robotic Egg-Lifting End Effector",
+    "summary": "Two-fingered nylon end effector for a motor-driven robotic hand, optimized through iterative testing to lift eggs (and other delicate objects) from the side without fracture.",
+    "description": "Designed a two-fingered end effector in NX CAD for a motor-powered robotic hand, with finger geometry tuned for reliable side-grip of fragile objects — eggs being the worst-case validation target. The constraint set was tight: the gripper had to seat the object on the curved surface, distribute load enough not to fracture the shell, and recover from small misalignments.\n\nIterated through several finger profiles in nylon (3D-printed for rapid spinning) before settling on the final geometry. Validation was hands-on: stacks of physical grip tests on real eggs, with shells inspected for hairline fracture after each cycle.",
+    "category": "Design",
+    "subcategory": "Coursework",
+    "year": "2024",
+    "dateRange": "March 2024 – May 2024",
+    "role": "Designer / Tester",
+    "tags": ["NX CAD", "Robotics", "Iterative Design"],
+    "tools": ["NX Siemens", "3D Printing (Nylon)"],
+    "highlights": [
+      "Two-finger geometry optimized for reliable side-grip of fragile objects.",
+      "Iterative physical testing on real eggs — no shell fractures in the final design.",
+      "Single-axis motor actuation, no force sensors required.",
+      "Designed to generalize to other delicate objects in the same size range."
+    ],
+    "images": [],
+    "links": {}
+  }
+]

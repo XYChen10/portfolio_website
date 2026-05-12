@@ -1,0 +1,52 @@
+{
+  "CAD & Design": [
+    "NX Siemens (CAD + CAM)",
+    "SolidWorks",
+    "Altair Inspire",
+    "GD&T",
+    "DFM / DFA",
+    "Engineering Drawings"
+  ],
+  "Simulation & Analysis": [
+    "Abaqus (FEA)",
+    "SIMULIA Isight",
+    "MATLAB",
+    "Lagrangian Mechanics",
+    "Bayesian Optimization",
+    "Fatigue / Goodman Analysis"
+  ],
+  "Programming": [
+    "Python",
+    "MATLAB",
+    "C",
+    "SymPy / NumPy",
+    "scikit-optimize",
+    "Plotly / Matplotlib"
+  ],
+  "Manufacturing & Workshop": [
+    "CNC Milling (Haas)",
+    "Injection Molding (Morgan Press)",
+    "Lathe Operation",
+    "Sand Casting",
+    "Sheet-Metal Working",
+    "TIG / MIG Welding",
+    "3D Printing (FDM)",
+    "Laser Cutting",
+    "Vinyl Printing"
+  ],
+  "Lab & Instrumentation": [
+    "Metrology / SPC",
+    "Spectroscopy",
+    "Laser Diffraction",
+    "Sound Detection",
+    "Electromagnetic Graphing",
+    "Pneumatic Systems"
+  ],
+  "Other": [
+    "Technical Writing",
+    "Cross-Disciplinary Teams",
+    "Project Leadership",
+    "Cantonese (Fluent)",
+    "Mandarin (Conversational)"
+  ]
+}

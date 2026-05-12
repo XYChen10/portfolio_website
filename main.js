@@ -795,19 +795,18 @@
       </section>
     ` : '';
 
-    // Gallery — if user provided images, use those; otherwise three labelled placeholder tiles
-    const galleryItems = (p.images && p.images.length)
-      ? p.images.map((src, i) => `<a class="gallery__item" data-src="${escapeAttr(src)}" data-caption="${escapeAttr(p.title)} — ${i + 1}"><img src="${escapeAttr(src)}" alt="${escapeAttr(p.title)} — image ${i + 1}" loading="lazy"/></a>`).join('')
-      : ['CAD MODEL', 'ANALYSIS', 'DOCUMENTATION'].map((l, i) => `<div class="gallery__item gallery__item--placeholder">${galleryPlaceholder(i, l)}</div>`).join('');
-
-    const galleryBlock = `
+    // Gallery — only render when the project has real images attached.
+    // Placeholder-only "Documentation" sections were redundant with the embedded PDF.
+    const galleryBlock = (p.images && p.images.length) ? `
       <section class="detail__section detail__gallery">
         <div class="container">
           <h2 class="section__title section__title--inline"><span class="section__title-lead mono">/ </span>Documentation</h2>
-          <div class="gallery" id="detailGallery">${galleryItems}</div>
+          <div class="gallery" id="detailGallery">
+            ${p.images.map((src, i) => `<a class="gallery__item" data-src="${escapeAttr(src)}" data-caption="${escapeAttr(p.title)} — ${i + 1}"><img src="${escapeAttr(src)}" alt="${escapeAttr(p.title)} — image ${i + 1}" loading="lazy"/></a>`).join('')}
+          </div>
         </div>
       </section>
-    `;
+    ` : '';
 
     const pdfBlock = p.pdf ? `
       <section class="detail__section detail__pdf">

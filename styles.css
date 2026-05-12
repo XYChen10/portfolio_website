@@ -5,8 +5,8 @@
    lightbox → responsive.
    ============================================================ */
 
-:root {
-  /* Palette */
+:root, :root[data-theme="light"] {
+  /* Palette — LIGHT */
   --c-bg:        #F2EFE8;
   --c-bg-2:      #ECE7DC;
   --c-bg-3:      #E4DED0;
@@ -19,6 +19,11 @@
   --c-accent-2:  #A33C24;
   --c-accent-3:  #8A3219;
   --c-accent-soft:#F3D8CC;
+  --c-nav-bg:    rgba(242,239,232,0.78);
+  --c-overlay-ink: rgba(26,24,21,0.65);
+  --grain-blend: multiply;
+  --grain-opacity: 0.35;
+  color-scheme: light;
 
   /* Type */
   --f-display: 'Space Grotesk', system-ui, -apple-system, Segoe UI, sans-serif;
@@ -39,6 +44,39 @@
   --shadow-card:   0 1px 0 var(--c-line-soft);
   --shadow-card-h: 0 18px 40px -22px rgba(26,24,21,0.35), 0 2px 0 var(--c-line);
   --nav-h: 70px;
+}
+
+:root[data-theme="dark"] {
+  /* Palette — DARK (only palette overrides; layout/type inherit from :root) */
+  --c-bg:        #15130F;
+  --c-bg-2:      #1E1B16;
+  --c-bg-3:      #28241D;
+  --c-ink:       #F2EFE8;
+  --c-ink-2:     #C8C2B5;
+  --c-muted:     #847C70;
+  --c-line:      #3A352D;
+  --c-line-soft: #2A2620;
+  --c-accent:    #E26544;
+  --c-accent-2:  #C44A2F;
+  --c-accent-3:  #F3D8CC;
+  --c-accent-soft:#3A1F16;
+  --c-nav-bg:    rgba(21,19,15,0.78);
+  --c-overlay-ink: rgba(0,0,0,0.7);
+  --grain-blend: screen;
+  --grain-opacity: 0.18;
+  --shadow-card-h: 0 18px 40px -22px rgba(0,0,0,0.6), 0 2px 0 var(--c-line);
+  color-scheme: dark;
+}
+
+/* Smooth color-only crossfade between themes — applied to <body> via a class.
+   Default state is no transition so the initial paint doesn't animate. */
+.theme-tween,
+.theme-tween *,
+.theme-tween *::before,
+.theme-tween *::after {
+  transition: background-color 320ms ease, color 320ms ease,
+              border-color 320ms ease, box-shadow 320ms ease,
+              fill 320ms ease, stroke 320ms ease !important;
 }
 
 /* ---------- Reset ---------- */
@@ -76,9 +114,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   position: fixed; inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.35;
-  mix-blend-mode: multiply;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.5 0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='0.6'/></svg>");
+  transition: opacity 360ms ease;
 }
 
 /* ---------- Custom cursor ---------- */
@@ -108,7 +147,7 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
 }
 .nav.is-scrolled {
   padding: 0.55rem 0;
-  background: rgba(242,239,232,0.78);
+  background: var(--c-nav-bg);
   backdrop-filter: saturate(140%) blur(14px);
   -webkit-backdrop-filter: saturate(140%) blur(14px);
   box-shadow: 0 1px 0 var(--c-line-soft);
@@ -420,35 +459,70 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
 /* ============================================================
    SKILLS
    ============================================================ */
+/* Skills — 2 rows × 3 columns, bullet-list of skills (non-interactive) */
 .skills__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   background: var(--c-line-soft);
   border: 1px solid var(--c-line-soft);
 }
 .skill-group {
   background: var(--c-bg);
-  padding: 1.75rem 1.5rem;
-  display: flex; flex-direction: column; gap: 1.1rem;
+  padding: 1.5rem 1.4rem 1.6rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  min-width: 0;
 }
 .skill-group header {
   display: flex; align-items: center; gap: 0.7rem;
-  padding-bottom: 0.8rem;
+  padding-bottom: 0.85rem;
   border-bottom: 1px dashed var(--c-line);
 }
 .skill-group__icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 34px; height: 34px;
   border: 1px solid var(--c-ink); color: var(--c-ink);
+  flex-shrink: 0;
 }
 .skill-group h3 {
   margin: 0; flex: 1;
-  font-family: var(--f-display); font-size: 1.05rem; font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--f-display);
+  font-size: 1.02rem; font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
 }
-.skill-group__count { color: var(--c-muted); }
+.skill-group__count {
+  color: var(--c-muted);
+  font-size: 0.66rem;
+}
 
+/* Skills rendered as a simple bullet list — comma/dot separated, not pills */
+.skill-list {
+  display: flex; flex-direction: column;
+  gap: 0.45rem;
+  margin: 0; padding: 0;
+  list-style: none;
+}
+.skill-list li {
+  display: flex; align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--c-ink-2);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.skill-list li::before {
+  content: '';
+  flex: 0 0 5px;
+  height: 5px;
+  background: var(--c-accent);
+  border-radius: 999px;
+  transform: translateY(-1px);
+}
+
+/* Default pills (used elsewhere on the site) keep their horizontal-pill style */
 .pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .pills--inline { margin-top: 0.75rem; }
 .pills--lg .pill { padding: 0.55rem 1rem; font-size: 0.78rem; }
@@ -571,7 +645,7 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
 .card__overlay {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(26,24,21,0.65);
+  background: var(--c-overlay-ink);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   opacity: 0;
@@ -695,6 +769,9 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
+}
+.contact__solo {
+  max-width: 720px;
 }
 .contact__big {
   font-family: var(--f-display); font-weight: 600;
@@ -998,6 +1075,157 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
 .lightbox__next:hover  { background: var(--c-accent); border-color: var(--c-accent); transform: translateY(-50%) translateX(3px); }
 
 /* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  color: var(--c-ink);
+  background: var(--c-bg);
+  overflow: visible;
+  transition: background 280ms ease, border-color 280ms ease, color 280ms ease, transform 240ms var(--e-out);
+}
+.theme-toggle:hover {
+  background: var(--c-ink);
+  color: var(--c-bg);
+  border-color: var(--c-ink);
+}
+.theme-toggle:active { transform: scale(0.95); }
+
+.theme-toggle__icon {
+  position: absolute;
+  transition: transform 420ms var(--e-out), opacity 280ms ease;
+}
+/* Default (light theme): show sun */
+.theme-toggle__icon--sun  { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-toggle__icon--moon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+
+/* Dark theme: show moon */
+[data-theme="dark"] .theme-toggle__icon--sun  { opacity: 0; transform: rotate(90deg) scale(0.6); }
+[data-theme="dark"] .theme-toggle__icon--moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Concentric ring for the nudge */
+.theme-toggle__ring {
+  position: absolute; inset: -4px;
+  border: 1.5px solid var(--c-accent);
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* "TRY DARK" tooltip-hint that floats above when nudging */
+.theme-toggle__hint {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  padding: 0.35rem 0.6rem;
+  background: var(--c-ink);
+  color: var(--c-bg);
+  border-radius: 4px;
+  font-size: 0.62rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 240ms ease, transform 240ms var(--e-out);
+}
+.theme-toggle__hint::before {
+  content: '';
+  position: absolute;
+  top: -5px; right: 14px;
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid var(--c-ink);
+}
+
+/* Attention-nudge animation: pulsing accent ring + slow wiggle + hint reveal */
+.theme-toggle--nudge {
+  animation: theme-bob 3.6s var(--e-soft) infinite;
+}
+.theme-toggle--nudge .theme-toggle__ring {
+  animation: theme-ring 2.4s var(--e-soft) infinite;
+}
+.theme-toggle--nudge .theme-toggle__hint {
+  animation: theme-hint 6s var(--e-soft) infinite;
+}
+.theme-toggle--nudge:hover {
+  animation-play-state: paused;
+}
+.theme-toggle--nudge:hover .theme-toggle__hint {
+  animation: none;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes theme-bob {
+  0%, 60%, 100% { transform: translateY(0) rotate(0); }
+  68%           { transform: translateY(-3px) rotate(-6deg); }
+  76%           { transform: translateY(0)    rotate(5deg); }
+  84%           { transform: translateY(-2px) rotate(-3deg); }
+  92%           { transform: translateY(0)    rotate(0); }
+}
+@keyframes theme-ring {
+  0%   { opacity: 0.85; transform: scale(1); }
+  100% { opacity: 0;    transform: scale(1.6); }
+}
+@keyframes theme-hint {
+  0%, 30%, 100% { opacity: 0; transform: translateY(-4px); }
+  40%, 60%      { opacity: 1; transform: translateY(0); }
+  72%           { opacity: 0; transform: translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle--nudge,
+  .theme-toggle--nudge .theme-toggle__ring,
+  .theme-toggle--nudge .theme-toggle__hint { animation: none; }
+  .theme-toggle--nudge .theme-toggle__hint { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   PROJECT DETAIL: PDF embed
+   ============================================================ */
+.detail__pdf { padding: 2rem 0 3rem; }
+.pdf__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.pdf__head .section__title { margin-bottom: 0; }
+.pdf__frame {
+  position: relative;
+  background: var(--c-bg-2);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 8.5 / 11;
+  max-height: 92vh;
+}
+.pdf__frame iframe {
+  width: 100%; height: 100%;
+  border: 0; display: block;
+}
+
+/* ============================================================
+   CARD COVER (real PDF page) — anchor top so the title shows
+   ============================================================ */
+.card__media img {
+  object-position: top center;
+}
+[data-theme="dark"] .card__media img {
+  /* Light PDFs against dark cards: soften slightly so they don't glow */
+  filter: brightness(0.92) contrast(1.04);
+}
+
+/* ============================================================
    VIEW TRANSITIONS
    ============================================================ */
 @media (prefers-reduced-motion: no-preference) {
@@ -1011,6 +1239,10 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 1100px) {
+  .skills__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @media (max-width: 960px) {
   .about__grid { grid-template-columns: 1fr; }
   .about__photo { position: relative; top: 0; max-width: 320px; }
@@ -1026,6 +1258,11 @@ body.has-cursor.cursor-hover .cursor-dot { background: var(--c-ink); }
   .strip__item:nth-child(3) { padding-left: 0; }
 
   .detail__hero-media { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 640px) {
+  .skills__grid { grid-template-columns: 1fr; }
+  .theme-toggle__hint { display: none; }
 }
 
 @media (max-width: 720px) {

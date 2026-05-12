@@ -12,7 +12,7 @@
   "linkedin": "",
   "github": "https://github.com/XYChen10",
   "photo": "assets/profile.jpg",
-  "resume": "data/xing_chen_resume.pdf",
+  "resume": "data/resume.pdf",
   "tagline": "Design — Analyze — Build",
   "taglines": [
     "Design — Analyze — Build",
@@ -20,8 +20,9 @@
     "Bayesian optimization to Bridgeport mills",
     "Rigor in the calculations, calluses in the shop"
   ],
-  "bio": "I'm a mechanical engineering senior at Northwestern, graduating June 2026. My work lives in the loop between design and the shop floor — drafting parts in CAD, validating them with FEA or first-principles math, then machining and testing them myself. Right now I'm leading the engineering analysis on a year-long capstone with UL Solutions, designing a battery drop-certification rig that's replacing decades of manual testing.",
-  "shortBio": "Mechanical engineering senior at Northwestern (June 2026), working across design, simulation, and fabrication. Currently leading engineering analysis on a UL Solutions battery-certification capstone.",
+  "bio": "I'm a mechanical engineering senior at Northwestern, graduating June 2026 and looking for full-time mechanical engineering roles. My work lives in the loop between design and the shop floor — drafting parts in CAD, validating them with FEA or first-principles math, then machining and testing them myself. Right now I'm leading the engineering analysis on a year-long capstone with UL Solutions, designing a battery drop-certification rig that's replacing decades of manual testing.",
+  "shortBio": "Mechanical engineering senior at Northwestern (June 2026), seeking full-time roles in mechanical design and analysis. Currently leading engineering analysis on a UL Solutions battery-certification capstone.",
+  "availability": "Open to full-time positions starting summer 2026.",
   "stats": [
     { "label": "Class Of", "value": "2026" },
     { "label": "Projects", "value": "6" },

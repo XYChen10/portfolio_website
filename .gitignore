@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node / npm (no build, but in case)
+node_modules/
+package-lock.json
+
+# Vercel
+.vercel/

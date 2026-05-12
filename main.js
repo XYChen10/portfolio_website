@@ -16,6 +16,43 @@
 
   const escapeAttr = escapeHTML;
 
+  // ---------- Theme toggle ----------
+  const THEME_KEY = 'portfolio-theme';
+  const NUDGE_KEY = 'portfolio-theme-acknowledged';
+
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    const btn = $('#themeToggle');
+    if (btn) btn.setAttribute('aria-pressed', String(theme === 'dark'));
+  };
+
+  const initThemeToggle = () => {
+    let saved = null;
+    try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
+    const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (systemDark ? 'dark' : 'light'));
+
+    const btn = $('#themeToggle');
+    if (!btn) return;
+
+    // Stop nudge animation if user has already interacted in the past
+    try {
+      if (localStorage.getItem(NUDGE_KEY)) btn.classList.remove('theme-toggle--nudge');
+    } catch (e) {}
+
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      // Enable color transitions only for this swap, then disable so layout
+      // and other transitions don't run on a fresh page-load.
+      document.body.classList.add('theme-tween');
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); localStorage.setItem(NUDGE_KEY, '1'); } catch (e) {}
+      btn.classList.remove('theme-toggle--nudge');
+      setTimeout(() => document.body.classList.remove('theme-tween'), 380);
+    });
+  };
+
   const initialsOf = (name) => {
     if (!name) return '·';
     const parts = name.trim().split(/\s+/);
@@ -186,6 +223,9 @@
   const initShared = (profile) => {
     // Footer year
     const fy = $('#footerYear'); if (fy) fy.textContent = new Date().getFullYear();
+
+    // Theme toggle: persisted, system-default-aware, attention-nudge until first click
+    initThemeToggle();
 
     // Nav scroll behavior
     const nav = $('#nav');
@@ -405,8 +445,8 @@
             <h3>${escapeHTML(title)}</h3>
             <span class="skill-group__count mono">${String(items.length).padStart(2, '0')}</span>
           </header>
-          <ul class="pills">
-            ${items.map((s) => `<li class="pill">${escapeHTML(s)}</li>`).join('')}
+          <ul class="skill-list">
+            ${items.map((s) => `<li>${escapeHTML(s)}</li>`).join('')}
           </ul>
         </article>`;
       }).join('');
@@ -482,31 +522,6 @@
           <span class="contact__link-arrow" aria-hidden="true">↗</span>
         </a></li>
       `).join('');
-    }
-
-    // ---- Contact form ----
-    const form = $('#contactForm');
-    if (form) {
-      const status = $('#contactStatus');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const data = new FormData(form);
-        const name = (data.get('name') || '').toString().trim();
-        const email = (data.get('email') || '').toString().trim();
-        const msg = (data.get('message') || '').toString().trim();
-        if (!name || !email || !msg) {
-          status.textContent = 'Please fill all fields.';
-          status.classList.add('is-error');
-          return;
-        }
-        status.classList.remove('is-error');
-        const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-        const body = encodeURIComponent(`${msg}\n\n— ${name} <${email}>`);
-        const target = profile.email || '';
-        window.location.href = `mailto:${target}?subject=${subject}&body=${body}`;
-        status.textContent = '> Opened in your mail client. Thanks!';
-        form.reset();
-      });
     }
 
     // ---- Nav active-section ----
@@ -794,6 +809,25 @@
       </section>
     `;
 
+    const pdfBlock = p.pdf ? `
+      <section class="detail__section detail__pdf">
+        <div class="container">
+          <div class="pdf__head">
+            <h2 class="section__title section__title--inline"><span class="section__title-lead mono">/ </span>Read the Report</h2>
+            <a class="btn btn--ghost" href="${escapeAttr(p.pdf)}" target="_blank" rel="noopener" download>
+              <span class="btn__label">Open / Download</span>
+              <span class="btn__icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 1v10M3 7l5 5 5-5M1 15h14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+            </a>
+          </div>
+          <div class="pdf__frame">
+            <iframe src="${escapeAttr(p.pdf)}#view=FitH&toolbar=1" title="${escapeAttr(p.title)} report" loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>
+    ` : '';
+
     const linksBlock = (p.links && Object.keys(p.links).filter((k) => p.links[k]).length) ? `
       <section class="detail__section detail__links">
         <div class="container">
@@ -841,7 +875,7 @@
       </section>
     ` : '';
 
-    return heroBlock + stripBlock + descBlock + highlightsBlock + toolsBlock + galleryBlock + linksBlock + relatedBlock;
+    return heroBlock + stripBlock + descBlock + highlightsBlock + toolsBlock + galleryBlock + pdfBlock + linksBlock + relatedBlock;
   };
 
   // ============================================================

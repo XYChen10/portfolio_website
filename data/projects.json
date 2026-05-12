@@ -20,10 +20,12 @@
       "Developed a drop-orientation measurement method that captures full impact-force mapping across the battery surface — replacing UL's incomplete corner-only data.",
       "Lifted-mass requirements split between subsystems: ≥50 lb on the release mechanism, ≥60 lb on the height adjustment."
     ],
+    "cover": "assets/previews/ul-battery-drop-tester.jpg",
+    "pdf": "data/reports/ul-battery-drop-tester.pdf",
     "images": [],
     "links": {
-      "report": "data/Full Engineering Analysis Report - UL - Google Docs.pdf",
-      "briefing": "data/Q1 Technical Briefing - UL - Google Docs.pdf"
+      "report": "data/reports/ul-battery-drop-tester.pdf",
+      "briefing": "data/reports/ul-battery-drop-tester-q1.pdf"
     }
   },
   {
@@ -46,9 +48,11 @@
       "Lowest contact factor of safety across the gearbox: 1.12 (Gear 2 mesh).",
       "Three SKF bearings selected (6410, NU 210 ECM, 6310) — no maintenance changes over 14,560-hour life."
     ],
+    "cover": "assets/previews/gear-shaft-design.jpg",
+    "pdf": "data/reports/gear-shaft-design.pdf",
     "images": [],
     "links": {
-      "report": "data/ME 315 Group 8 Design Project.pdf"
+      "report": "data/reports/gear-shaft-design.pdf"
     }
   },
   {
@@ -71,9 +75,11 @@
       "30 initial samples + 30 iterations converge in 27 minutes — fewer-iteration runs (5+5) reach the same local minimum.",
       "K-fold cross-validation silhouette scores 0.628–0.685 confirm well-separated exploration across the design space."
     ],
+    "cover": "assets/previews/pressure-vessel-bayesian.jpg",
+    "pdf": "data/reports/pressure-vessel-bayesian.pdf",
     "images": [],
     "links": {
-      "report": "data/ME341 Final Report (1).pdf",
+      "report": "data/reports/pressure-vessel-bayesian.pdf",
       "code": "https://github.com/XYChen10/ME341_Project_Code"
     }
   },
@@ -97,9 +103,11 @@
       "RK4 integration over 10 s at Δt = 0.01 s — interactive Plotly animation as the deliverable.",
       "Custom solution-picker handles multiple-root cases from the impact constraint solver."
     ],
+    "cover": "assets/previews/jack-in-a-box-simulation.jpg",
+    "pdf": "data/reports/jack-in-a-box-simulation.pdf",
     "images": [],
     "links": {
-      "notebook": "data/ME_314_Final_Project.ipynb - Colab.pdf"
+      "notebook": "data/reports/jack-in-a-box-simulation.pdf"
     }
   },
   {
@@ -122,9 +130,11 @@
       "Metrology: axolotl leg width 0.194\" mean against 0.200\" target — within shrinkage tolerance.",
       "Boat-half press fit (0.0025\" interference, 30 MPa design stress) — secure assembly without fasteners."
     ],
+    "cover": "assets/previews/injection-molded-axolotl-boat.jpg",
+    "pdf": "data/reports/injection-molded-axolotl-boat.pdf",
     "images": [],
     "links": {
-      "report": "data/340-2 Final Report (1).pdf"
+      "report": "data/reports/injection-molded-axolotl-boat.pdf"
     }
   },
   {

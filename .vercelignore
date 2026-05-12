@@ -1,0 +1,8 @@
+# Source originals — kept in repo for backup but not served
+src/
+
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
+node_modules/

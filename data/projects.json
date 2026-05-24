@@ -21,12 +21,7 @@
       "Lifted-mass requirements split between subsystems: ≥50 lb on the release mechanism, ≥60 lb on the height adjustment."
     ],
     "cover": "assets/previews/ul-battery-drop-tester.jpg",
-    "pdf": "data/reports/ul-battery-drop-tester.pdf",
     "images": [],
-    "links": {
-      "report": "data/reports/ul-battery-drop-tester.pdf",
-      "briefing": "data/reports/ul-battery-drop-tester-q1.pdf"
-    }
   },
   {
     "id": "gear-shaft-design",

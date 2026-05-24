@@ -9,9 +9,8 @@
   "year": "2026",
   "dateRange": "January 2026 – June 2026",
   "role": "Lead Engineering Analysis / Fabrication",
-  "team": "6 (with Charlize Guillen, Kelley Gaines, Cristian Gonzalez, Paulina Hernandez, Serena Frolli)",
+  "team": "6 (with C. Guillen, K. Gaines, C. Gonzalez, P. Hernandez, S. Frolli)",
   "client": "UL Solutions",
-  "advisors": "Jeremy Keys, Michael Beltran (UL Solutions); Miles Lankford, Guanying Li",
   "tags": [
     "SolidWorks",
     "Pneumatics",
@@ -32,7 +31,7 @@
     "Developed a drop-orientation measurement method that captures full impact-force mapping across the battery surface — replacing UL's incomplete corner-only data.",
     "Lifted-mass requirements split between subsystems: ≥50 lb on the release mechanism, ≥60 lb on the height adjustment."
   ],
-  "cover": "assets/previews/ul-battery-drop-tester.jpg",
+  "cover": "Battery_Drop_Tester.jpg",
   "images": []
 },
   {

@@ -1,28 +1,38 @@
 [
   {
-    "id": "ul-battery-drop-tester",
-    "title": "UL Battery Drop Certification Tester",
-    "summary": "Year-long capstone for UL Solutions: a remote-operated battery drop tester that replaces a manual rig with repeatable, instrumented, multi-orientation drop testing.",
-    "description": "UL Solutions' Battery Test Center in Illinois relied on a manual drop-testing rig that required operators to remain inside the test cell during a drop, used a single-plate trapdoor that couldn't produce instantaneous releases, and made repeatable corner-drop orientations effectively impossible. Our six-person team designed and built a remote-operable replacement that satisfies UL's certification standards while protecting operators.\n\nThe system is broken into five subsystems: a pneumatic-piston battery release and orientation mechanism (the critical system from Q1), a lead-screw height adjustment, a drop base platform, a wireless remote control and monitoring system, and a set of universal-pin end effectors that hold prismatic and cylindrical cells. Q1 prototyping converged on twin pneumatic pistons over alternatives like belt-driven actuators and side-pull calipers — informed by an alternatives matrix and bench testing. Q2 work focused on integrating those subsystems into a complete prototype, with synchronized piston actuation, an Ashby-driven material selection for the impact surface and viewing window, and an FMEA across the orient/release and lifting subfunctions.\n\nI led full prototype fabrication from ideation and sourcing through manufacturing and assembly, and served as primary editor for all engineering analysis, technical documentation, CAD, and presentations. The drop orientation measurement method I developed captures full force-mapping across the battery surface on impact, replacing the incomplete corner-only contact data UL was previously using.",
-    "category": "Design",
-    "subcategory": "Capstone",
-    "year": "2026",
-    "dateRange": "January 2026 – June 2026",
-    "role": "Lead Engineering Analysis / Fabrication",
-    "team": "6 (with Charlize Guillen, Kelley Gaines, Cristian Gonzalez, Paulina Hernandez, Serena Frolli)",
-    "client": "UL Solutions",
-    "advisors": "Jeremy Keys, Michael Beltran (UL Solutions); Miles Lankford, Guanying Li",
-    "tags": ["SolidWorks", "Pneumatics", "Capstone", "UL Solutions"],
-    "tools": ["SolidWorks", "Raspberry Pi Pico 2W", "Blynk IoT", "Ashby Selection", "FMEA", "McMaster-Carr"],
-    "highlights": [
-      "80% edge-drop success rate on M18 batteries with the Q1 pneumatic-piston prototype, passing the 50 lb marginal load requirement.",
-      "Four core subsystems engineered from scratch: pneumatic release mechanism, universal-pin end effectors, lead-screw height adjustment, drop-base containment & safety monitoring.",
-      "Developed a drop-orientation measurement method that captures full impact-force mapping across the battery surface — replacing UL's incomplete corner-only data.",
-      "Lifted-mass requirements split between subsystems: ≥50 lb on the release mechanism, ≥60 lb on the height adjustment."
-    ],
-    "cover": "assets/previews/ul-battery-drop-tester.jpg",
-    "images": [],
-  },
+  "id": "ul-battery-drop-tester",
+  "title": "UL Battery Drop Certification Tester",
+  "summary": "Year-long capstone for UL Solutions: a remote-operated battery drop tester that replaces a manual rig with repeatable, instrumented, multi-orientation drop testing.",
+  "description": "...",
+  "category": "Design",
+  "subcategory": "Capstone",
+  "year": "2026",
+  "dateRange": "January 2026 – June 2026",
+  "role": "Lead Engineering Analysis / Fabrication",
+  "team": "6 (with Charlize Guillen, Kelley Gaines, Cristian Gonzalez, Paulina Hernandez, Serena Frolli)",
+  "client": "UL Solutions",
+  "advisors": "Jeremy Keys, Michael Beltran (UL Solutions); Miles Lankford, Guanying Li",
+  "tags": ["SolidWorks", "Pneumatics", "Capstone", "UL Solutions"],
+  "tools": [
+    "SolidWorks",
+    "Raspberry Pi Pico 2W",
+    "Blynk IoT",
+    "Ashby Selection",
+    "FMEA",
+    "McMaster-Carr"
+  ],
+  "highlights": [
+    "80% edge-drop success rate on M18 batteries with the Q1 pneumatic-piston prototype, passing the 50 lb marginal load requirement.",
+    "Four core subsystems engineered from scratch: pneumatic release mechanism, universal-pin end effectors, lead-screw height adjustment, drop-base containment & safety monitoring.",
+    "Developed a drop-orientation measurement method that captures full impact-force mapping across the battery surface — replacing UL's incomplete corner-only data.",
+    "Lifted-mass requirements split between subsystems: ≥50 lb on the release mechanism, ≥60 lb on the height adjustment."
+  ],
+  "cover": "assets/previews/ul-battery-drop-tester.jpg",
+  "images": [],
+  "links": {
+    "briefing": "data/reports/ul-battery-drop-tester-q1.pdf"
+  }
+}
   {
     "id": "gear-shaft-design",
     "title": "Three-Shaft, Four-Element Gear Train",
